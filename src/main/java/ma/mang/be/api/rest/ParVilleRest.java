@@ -50,19 +50,19 @@ public class ParVilleRest {
 			throws Exception {
 		ParVille m =null;
 		try {
-		 m = villeService.save(ParVilleDto.to(villeDetails));
+		 m = villeService.save(ParVilleDto.convertToEntity(villeDetails));
 		}catch(Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.ok(HttpStatus.INTERNAL_SERVER_ERROR);//.body(new ResponseMessageDto("ParVille creation failed.",HttpStatus.INTERNAL_SERVER_ERROR,e.getMessage() + "\n" + e.getCause()));
 		}
-		return ResponseEntity.ok(ParVilleDto.from(m));
+		return ResponseEntity.ok(ParVilleDto.convertToDto(m));
 	}
 	
 	@GetMapping("/villes")
 	@ApiOperation(notes = "Retrieves all ville", value = "", response = ParVille.class)
 	public ResponseEntity<List<ParVilleDto>> getParVilles() throws Exception {
 		List<ParVille> villes = villeService.getAllParVilles();
-		return ResponseEntity.ok(ParVilleDto.from(villes));
+		return ResponseEntity.ok(ParVilleDto.convertToDto(villes));
 	}
 
 
@@ -74,7 +74,7 @@ public class ParVilleRest {
 			throw new Exception("ParVille not found for this id :: " + villeId);
 		}
 	
-		return ResponseEntity.ok(ParVilleDto.from(ville));
+		return ResponseEntity.ok(ParVilleDto.convertToDto(ville));
 	}
 	
 	@GetMapping("/villes/pays/{id}")
@@ -85,7 +85,7 @@ public class ParVilleRest {
 			throw new Exception("ParVille not found for this pays id :: " + id);
 		}
 	
-		return ParVilleDto.from(villes);
+		return ParVilleDto.convertToDto(villes);
 	}
 
 
@@ -98,7 +98,7 @@ public class ParVilleRest {
 		if(ville==null) {
 			new Exception("ParVille not found for this id :: " + villeId);
 		}
-		ParVille m = villeService.save(ParVilleDto.to(villeDetails));
+		ParVille m = villeService.save(ParVilleDto.convertToEntity(villeDetails));
 		if(m!=null) {
 			msg = MSG_VILLE_UPDATED;
 		}else {

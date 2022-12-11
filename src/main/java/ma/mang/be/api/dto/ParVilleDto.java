@@ -9,31 +9,33 @@ import java.util.List;
 import ma.mang.be.api.model.ParVille;
 
 /**
+ * DTO Class to manipulate ParVille objects in the front side
  * @author achraf
+ * @version v0.1
  *
  */
 public class ParVilleDto {
 	
 	private long id;
-    private String labelAr;
-    private String labelFr;
+    private String titleAr;
+    private String titleFr;
     private long idPays;
     
     public ParVilleDto() {
 		super();
 	}
 
-    public ParVilleDto(long id, String labelAr, String labelFr) {
+    public ParVilleDto(long id, String titleAr, String titleFr) {
 		super();
 		this.id = id;
-		this.labelAr = labelAr;
-		this.labelFr = labelFr;
+		this.titleAr = titleAr;
+		this.titleFr = titleFr;
 	}
-    public ParVilleDto(long id, String labelAr, String labelFr,long idPays) {
+    public ParVilleDto(long id, String titleAr, String titleFr,long idPays) {
 		super();
 		this.id = id;
-		this.labelAr = labelAr;
-		this.labelFr = labelFr;
+		this.titleAr = titleAr;
+		this.titleFr = titleFr;
 		this.idPays = idPays; 
 	}
 
@@ -45,20 +47,20 @@ public class ParVilleDto {
 		this.id = id;
 	}
 
-	public String getLabelAr() {
-		return labelAr;
+	public String getTitleAr() {
+		return titleAr;
 	}
 
-	public void setLabelAr(String labelAr) {
-		this.labelAr = labelAr;
+	public void setTitleAr(String titleAr) {
+		this.titleAr = titleAr;
 	}
 
-	public String getLabelFr() {
-		return labelFr;
+	public String getTitleFr() {
+		return titleFr;
 	}
 
-	public void setLabelFr(String labelFr) {
-		this.labelFr = labelFr;
+	public void setTitleFr(String titleFr) {
+		this.titleFr = titleFr;
 	}
 
 	public long getIdPays() {
@@ -69,11 +71,11 @@ public class ParVilleDto {
 		this.idPays = idPays;
 	}
 
-	public static ParVilleDto from(ParVille ville) {
+	public static ParVilleDto convertToDto(ParVille ville) {
 		if(ville!=null) {
 			return new ParVilleDto(ville.getId(),
-					ville.getLabelAr(),
-					ville.getLabelFr(),
+					ville.getTitleAr(),
+					ville.getTitleFr(),
 					ville.getPays().getId()
 					);
 		}
@@ -81,21 +83,21 @@ public class ParVilleDto {
 		
 	}
 	
-	public static List<ParVilleDto> from(List<ParVille> villes) {
+	public static List<ParVilleDto> convertToDto(List<ParVille> villes) {
 		List<ParVilleDto> villeDtos = new ArrayList<>();
 		if(villes!=null) {
 			for(ParVille f : villes) {
-				villeDtos.add(from(f));
+				villeDtos.add(convertToDto(f));
 			}
 		}
 		 return villeDtos;
 		
 	}
-	public static ParVille to(ParVilleDto ville) {
+	public static ParVille convertToEntity(ParVilleDto ville) {
 		if(ville!=null) {
 			return new ParVille(ville.getId(),
-					ville.getLabelAr(),
-					ville.getLabelFr(),
+					ville.getTitleAr(),
+					ville.getTitleFr(),
 					ville.getIdPays()
 					);
 		}

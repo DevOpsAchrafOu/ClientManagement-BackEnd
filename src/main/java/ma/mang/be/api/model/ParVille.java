@@ -22,8 +22,8 @@ import javax.persistence.Table;
 public class ParVille {
 	
 	private long id;
-    private String labelAr;
-    private String labelFr;
+    private String titleAr;
+    private String titleFr;
 	private ParPays pays;
 
     public ParVille() {
@@ -31,18 +31,18 @@ public class ParVille {
 	}
 
     
-	public ParVille(long id, String labelAr, String labelFr) {
+	public ParVille(long id, String titleAr, String titleFr) {
 		super();
 		this.id = id;
-		this.labelAr = labelAr;
-		this.labelFr = labelFr;
+		this.titleAr = titleAr;
+		this.titleFr = titleFr;
 	}
 	
-	public ParVille(long id, String labelAr, String labelFr,long idPays) {
+	public ParVille(long id, String titleAr, String titleFr,long idPays) {
 		super();
 		this.id = id;
-		this.labelAr = labelAr;
-		this.labelFr = labelFr;
+		this.titleAr = titleAr;
+		this.titleFr = titleFr;
 		this.pays = new ParPays(idPays);
 	}
 
@@ -63,22 +63,22 @@ public class ParVille {
 		this.id = id;
 	}
 
-	@Column(name="label_ar")
-	public String getLabelAr() {
-		return labelAr;
+	@Column(name="title_ar")
+	public String getTitleAr() {
+		return titleAr;
 	}
 
-	public void setLabelAr(String labelAr) {
-		this.labelAr = labelAr;
+	public void setTitleAr(String titleAr) {
+		this.titleAr = titleAr;
 	}
 
-	@Column(name="label_fr")
-	public String getLabelFr() {
-		return labelFr;
+	@Column(name="title_fr")
+	public String getTitleFr() {
+		return titleFr;
 	}
 
-	public void setLabelFr(String labelFr) {
-		this.labelFr = labelFr;
+	public void setTitleFr(String titleFr) {
+		this.titleFr = titleFr;
 	}
 	@OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "pays_id", referencedColumnName = "id")
@@ -90,5 +90,13 @@ public class ParVille {
 	public void setPays(ParPays pays) {
 		this.pays = pays;
 	}
+
+
+	@Override
+	public String toString() {
+		return "ParVille [id=" + id + ", titleAr=" + titleAr + ", titleFr=" + titleFr + ", pays=" + pays + "]";
+	}
+	
+	
 	
 }

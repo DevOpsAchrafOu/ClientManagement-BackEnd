@@ -19,19 +19,19 @@ import javax.persistence.Table;
 public class ParPays {
 	
 	private long id;
-    private String labelAr;
-    private String labelFr;
+    private String titleAr;
+    private String titleFr;
 
     public ParPays() {
 		super();
 	}
 
     
-	public ParPays(long id, String labelAr, String labelFr) {
+	public ParPays(long id, String titleAr, String titleFr) {
 		super();
 		this.id = id;
-		this.labelAr = labelAr;
-		this.labelFr = labelFr;
+		this.titleAr = titleAr;
+		this.titleFr = titleFr;
 	}
 
 
@@ -51,22 +51,30 @@ public class ParPays {
 		this.id = id;
 	}
 
-	@Column(name="label_ar")
-	public String getLabelAr() {
-		return labelAr;
+	@Column(name="title_ar")
+	public String getTitleAr() {
+		return titleAr;
 	}
 
-	public void setLabelAr(String labelAr) {
-		this.labelAr = labelAr;
+	public void setTitleAr(String titleAr) {
+		this.titleAr = titleAr;
 	}
 
-	@Column(name="label_fr")
-	public String getLabelFr() {
-		return labelFr;
+	@Column(name="title_fr")
+	public String getTitleFr() {
+		return titleFr;
 	}
 
-	public void setLabelFr(String labelFr) {
-		this.labelFr = labelFr;
+	public void setTitleFr(String titleFr) {
+		this.titleFr = titleFr;
 	}
+
+
+	@Override
+	public String toString() {
+		return "ParPays [id=" + id + ", titleAr=" + titleAr + ", titleFr=" + titleFr + "]";
+	}
+	
+	
 	
 }

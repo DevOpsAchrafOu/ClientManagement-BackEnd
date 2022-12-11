@@ -50,19 +50,19 @@ public class ParPaysRest {
 			throws Exception {
 		ParPays m =null;
 		try {
-		 m = paysService.save(ParPaysDto.to(paysDetails));
+		 m = paysService.save(ParPaysDto.convertToEntity(paysDetails));
 		}catch(Exception e) {
 			e.printStackTrace();
-			return ResponseEntity.ok(HttpStatus.INTERNAL_SERVER_ERROR);//.body(new ResponseMessageDto("ParPays creation failed.",HttpStatus.INTERNAL_SERVER_ERROR,e.getMessage() + "\n" + e.getCause()));
+			return ResponseEntity.ok(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return ResponseEntity.ok(ParPaysDto.from(m));
+		return ResponseEntity.ok(ParPaysDto.convertToDto(m));
 	}
 	
 	@GetMapping("/pays")
-	@ApiOperation(notes = "Retrieves all pays for the connected profile", value = "", response = ParPays.class)
+	@ApiOperation(notes = "Retrieves all pays", value = "", response = ParPays.class)
 	public ResponseEntity<List<ParPaysDto>> getParPayss() throws Exception {
 		List<ParPays> pays = paysService.getAllParPayss();
-		return ResponseEntity.ok(ParPaysDto.from(pays));
+		return ResponseEntity.ok(ParPaysDto.convertToDto(pays));
 	}
 
 
@@ -74,13 +74,13 @@ public class ParPaysRest {
 			throw new Exception("ParPays not found for this id :: " + paysId);
 		}
 	
-		return ResponseEntity.ok(ParPaysDto.from(pays));
+		return ResponseEntity.ok(ParPaysDto.convertToDto(pays));
 	}
 
 
 	@PutMapping("/pays/{id}")
 	@ApiOperation(notes = "Updates a pays identified by ID", value = "", response = String.class)
-	public ResponseEntity<?> updateParPays(@PathVariable(value = "id") Long paysId, @RequestBody ParPaysDto paysDetails)
+	public ResponseEntity<?> updateParPays(@PathVariable(value = "id") Long paysId, @RequestBody ParPaysDto paysDto)
 			throws Exception {
 		ParPays pays = paysService.getParPaysById(paysId);
 		String rst="";
@@ -88,7 +88,7 @@ public class ParPaysRest {
 		if(pays==null) {
 			new Exception("ParPays not found for this id :: " + paysId);
 		}
-		ParPays m = paysService.save(ParPaysDto.to(paysDetails));
+		ParPays m = paysService.save(ParPaysDto.convertToEntity(paysDto));
 		if(m!=null) {
 			msg = MSG_PAYS_UPDATED;
 		}else {

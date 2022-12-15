@@ -5,7 +5,7 @@ package ma.mang.be.api.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import ma.mang.be.api.model.ParPays;
+import ma.mang.be.api.entity.ParPays;
 
 /**
  * Specific DAO to manipulate ParPays object in the database

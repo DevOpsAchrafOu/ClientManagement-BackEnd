@@ -17,17 +17,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @SpringBootApplication(exclude = IntegrationAutoConfiguration.class)
 @EnableAutoConfiguration
-//@EnableSwagger2
-//@EnableScheduling
+@EnableSwagger2
 public class ClientManagementBackEndApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ClientManagementBackEndApplication.class, args);
-	}
-	
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
 	}
 
 }

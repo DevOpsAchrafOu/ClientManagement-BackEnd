@@ -5,7 +5,8 @@ package ma.mang.be.api.service;
 
 import java.util.List;
 
-import ma.mang.be.api.model.ParVille;
+import ma.mang.be.api.entity.ParVille;
+import ma.mang.be.api.exception.NotFoundElementException;
 
 /**
  * Specific Services to manipulate ParVilles 
@@ -18,7 +19,7 @@ public interface ParVilleService {
 	/**Generic services **/
 	List<ParVille> getAllParVilles();
 	
-	ParVille getParVilleById(Long id) throws Exception ;
+	ParVille getParVilleById(Long id) throws NotFoundElementException ;
 	
 	ParVille save(ParVille ap);
 	

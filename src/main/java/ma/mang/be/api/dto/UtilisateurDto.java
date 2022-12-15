@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import org.reflections.util.Utils;
 
-import ma.mang.be.api.model.Utilisateur;
+import ma.mang.be.api.entity.Utilisateur;
 
 /**
  * DTO Class to manipulate Utilisateur objects in the front side

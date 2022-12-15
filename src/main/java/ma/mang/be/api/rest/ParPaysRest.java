@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ma.mang.be.api.rest;
 
 import java.util.HashMap;
@@ -22,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import ma.mang.be.api.dto.ParPaysDto;
-import ma.mang.be.api.model.ParPays;
+import ma.mang.be.api.entity.ParPays;
+import ma.mang.be.api.exception.NotFoundElementException;
+import ma.mang.be.api.exception.ResourceNotFoundException;
 import ma.mang.be.api.service.ParPaysService;
 
 /**
@@ -54,13 +53,15 @@ public class ParPaysRest {
 		}catch(Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.ok(HttpStatus.INTERNAL_SERVER_ERROR);
+			//.body(new ResponseMessageDto("RefPays creation failed.",HttpStatus.INTERNAL_SERVER_ERROR,e.getMessage() + "\n" + e.getCause()));
+			
 		}
 		return ResponseEntity.ok(ParPaysDto.convertToDto(m));
 	}
 	
 	@GetMapping("/pays")
 	@ApiOperation(notes = "Retrieves all pays", value = "", response = ParPays.class)
-	public ResponseEntity<List<ParPaysDto>> getParPayss() throws Exception {
+	public ResponseEntity<List<ParPaysDto>> getParPayss() throws ResourceNotFoundException {
 		List<ParPays> pays = paysService.getAllParPayss();
 		return ResponseEntity.ok(ParPaysDto.convertToDto(pays));
 	}
@@ -68,10 +69,10 @@ public class ParPaysRest {
 
 	@GetMapping("/pays/{id}")
 	@ApiOperation(notes = "Retrieves pays by ID", value = "", response = ParPays.class)
-	public ResponseEntity<ParPaysDto> getParPaysById(@PathVariable(value = "id") Long paysId) throws Exception {
+	public ResponseEntity<ParPaysDto> getParPaysById(@PathVariable(value = "id") Long paysId) throws NotFoundElementException {
 		ParPays pays = paysService.getParPaysById(paysId);
 		if (pays == null) {
-			throw new Exception("ParPays not found for this id :: " + paysId);
+			throw new NotFoundElementException("ParPays not found for this id :: " + paysId);
 		}
 	
 		return ResponseEntity.ok(ParPaysDto.convertToDto(pays));
@@ -83,10 +84,9 @@ public class ParPaysRest {
 	public ResponseEntity<?> updateParPays(@PathVariable(value = "id") Long paysId, @RequestBody ParPaysDto paysDto)
 			throws Exception {
 		ParPays pays = paysService.getParPaysById(paysId);
-		String rst="";
 		String msg="";
 		if(pays==null) {
-			new Exception("ParPays not found for this id :: " + paysId);
+			new NotFoundElementException("ParPays not found for this id :: " + paysId);
 		}
 		ParPays m = paysService.save(ParPaysDto.convertToEntity(paysDto));
 		if(m!=null) {
@@ -100,10 +100,10 @@ public class ParPaysRest {
 
 	@DeleteMapping("/pays/{id}")
 	@ApiOperation(notes = "Deletes a pays identified by ID from database", value = "", response = String.class)
-	public ResponseEntity<?> deleteParPays(@PathVariable(value = "id") Long paysId) throws Exception {
+	public ResponseEntity<?> deleteParPays(@PathVariable(value = "id") Long paysId) throws NotFoundElementException {
 		ParPays pays = paysService.getParPaysById(paysId);
 		if(pays==null) {
-			new Exception("ParPays not found for this id :: " + paysId);
+			new NotFoundElementException("ParPays not found for this id :: " + paysId);
 		}
 		paysService.delete(paysId);
 		Map<String, Boolean> response = new HashMap<>();

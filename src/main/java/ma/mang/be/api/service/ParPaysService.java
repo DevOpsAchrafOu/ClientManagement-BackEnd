@@ -4,7 +4,9 @@
 package ma.mang.be.api.service;
 
 import java.util.List;
-import ma.mang.be.api.model.ParPays;
+
+import ma.mang.be.api.entity.ParPays;
+import ma.mang.be.api.exception.NotFoundElementException;
 
 /**
  * Specific Services to manipulate ParPayss 
@@ -17,7 +19,7 @@ public interface ParPaysService {
 	/**Generic services **/
 	List<ParPays> getAllParPayss();
 	
-	ParPays getParPaysById(Long id) throws Exception ;
+	ParPays getParPaysById(Long id) throws NotFoundElementException ;
 	
 	ParPays save(ParPays ap);
 	

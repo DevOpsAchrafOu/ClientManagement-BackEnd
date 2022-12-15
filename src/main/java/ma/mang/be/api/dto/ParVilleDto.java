@@ -6,7 +6,8 @@ package ma.mang.be.api.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import ma.mang.be.api.model.ParVille;
+import ma.mang.be.api.entity.ParVille;
+
 
 /**
  * DTO Class to manipulate ParVille objects in the front side

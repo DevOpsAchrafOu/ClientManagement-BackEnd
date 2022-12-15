@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ma.mang.be.api.rest;
 
 import java.util.HashMap;
@@ -22,7 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import ma.mang.be.api.dto.ParVilleDto;
-import ma.mang.be.api.model.ParVille;
+import ma.mang.be.api.entity.ParVille;
+import ma.mang.be.api.exception.NotFoundElementException;
 import ma.mang.be.api.service.ParVilleService;
 
 /**
@@ -53,14 +51,15 @@ public class ParVilleRest {
 		 m = villeService.save(ParVilleDto.convertToEntity(villeDetails));
 		}catch(Exception e) {
 			e.printStackTrace();
-			return ResponseEntity.ok(HttpStatus.INTERNAL_SERVER_ERROR);//.body(new ResponseMessageDto("ParVille creation failed.",HttpStatus.INTERNAL_SERVER_ERROR,e.getMessage() + "\n" + e.getCause()));
+			return ResponseEntity.ok(HttpStatus.INTERNAL_SERVER_ERROR);
+			//.body(new ResponseMessageDto("ParVille creation failed.",HttpStatus.INTERNAL_SERVER_ERROR,e.getMessage() + "\n" + e.getCause()));
 		}
 		return ResponseEntity.ok(ParVilleDto.convertToDto(m));
 	}
 	
 	@GetMapping("/villes")
 	@ApiOperation(notes = "Retrieves all ville", value = "", response = ParVille.class)
-	public ResponseEntity<List<ParVilleDto>> getParVilles() throws Exception {
+	public ResponseEntity<List<ParVilleDto>> getParVilles() throws NotFoundElementException {
 		List<ParVille> villes = villeService.getAllParVilles();
 		return ResponseEntity.ok(ParVilleDto.convertToDto(villes));
 	}
@@ -68,10 +67,10 @@ public class ParVilleRest {
 
 	@GetMapping("/villes/{id}")
 	@ApiOperation(notes = "Retrieves ville by ID", value = "", response = ParVille.class)
-	public ResponseEntity<ParVilleDto> getParVilleById(@PathVariable(value = "id") Long villeId) throws Exception {
+	public ResponseEntity<ParVilleDto> getParVilleById(@PathVariable(value = "id") Long villeId) throws NotFoundElementException {
 		ParVille ville = villeService.getParVilleById(villeId);
 		if (ville == null) {
-			throw new Exception("ParVille not found for this id :: " + villeId);
+			throw new NotFoundElementException("ParVille not found for this id :: " + villeId);
 		}
 	
 		return ResponseEntity.ok(ParVilleDto.convertToDto(ville));
@@ -79,10 +78,10 @@ public class ParVilleRest {
 	
 	@GetMapping("/villes/pays/{id}")
 	@ApiOperation(notes = "Retrieves ville by ID", value = "", response = ParVille.class)
-	public List<ParVilleDto>  getParVilleByPaysId(@PathVariable(value = "id") Long id) throws Exception {
+	public List<ParVilleDto>  getParVilleByPaysId(@PathVariable(value = "id") Long id) throws NotFoundElementException {
 		List<ParVille> villes = villeService.getParVilleByPaysId(id);
 		if (villes == null) {
-			throw new Exception("ParVille not found for this pays id :: " + id);
+			throw new NotFoundElementException("ParVille not found for this pays id :: " + id);
 		}
 	
 		return ParVilleDto.convertToDto(villes);
@@ -110,10 +109,10 @@ public class ParVilleRest {
 
 	@DeleteMapping("/villes/{id}")
 	@ApiOperation(notes = "Deletes a ville identified by ID from database", value = "", response = String.class)
-	public ResponseEntity<?> deleteParVille(@PathVariable(value = "id") Long villeId) throws Exception {
+	public ResponseEntity<?> deleteParVille(@PathVariable(value = "id") Long villeId) throws NotFoundElementException {
 		ParVille ville = villeService.getParVilleById(villeId);
 		if(ville==null) {
-			new Exception("ParVille not found for this id :: " + villeId);
+			new NotFoundElementException("ParVille not found for this id :: " + villeId);
 		}
 		villeService.delete(villeId);
 		Map<String, Boolean> response = new HashMap<>();

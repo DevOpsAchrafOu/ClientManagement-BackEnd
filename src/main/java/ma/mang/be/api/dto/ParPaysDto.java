@@ -4,7 +4,7 @@ package ma.mang.be.api.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import ma.mang.be.api.model.ParPays;
+import ma.mang.be.api.entity.ParPays;
 
 /**
  * DTO Class to manipulate ParPays objects in the front side
@@ -12,6 +12,7 @@ import ma.mang.be.api.model.ParPays;
  * @version v0.1
  *
  */
+
 public class ParPaysDto {
 	
 	private long id;

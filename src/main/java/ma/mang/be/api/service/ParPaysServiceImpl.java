@@ -10,7 +10,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
-import ma.mang.be.api.model.ParPays;
+import ma.mang.be.api.entity.ParPays;
+import ma.mang.be.api.exception.NotFoundElementException;
 import ma.mang.be.api.repository.ParPaysRepository;
 
 /**
@@ -31,7 +32,7 @@ public class ParPaysServiceImpl implements ParPaysService {
 	}
 
 	@Override
-	public ParPays getParPaysById(Long id) throws Exception {
+	public ParPays getParPaysById(Long id) throws NotFoundElementException {
 		return ParPaysRepo.getById(id);
 	}
 

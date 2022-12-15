@@ -1,13 +1,16 @@
 /**
  * 
  */
-package ma.mang.be.api.model;
+package ma.mang.be.api.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -15,27 +18,36 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "par_pays")
-public class ParPays {
+@Table(name = "par_ville")
+public class ParVille {
 	
 	private long id;
     private String titleAr;
     private String titleFr;
+	private ParPays pays;
 
-    public ParPays() {
+    public ParVille() {
 		super();
 	}
 
     
-	public ParPays(long id, String titleAr, String titleFr) {
+	public ParVille(long id, String titleAr, String titleFr) {
 		super();
 		this.id = id;
 		this.titleAr = titleAr;
 		this.titleFr = titleFr;
 	}
+	
+	public ParVille(long id, String titleAr, String titleFr,long idPays) {
+		super();
+		this.id = id;
+		this.titleAr = titleAr;
+		this.titleFr = titleFr;
+		this.pays = new ParPays(idPays);
+	}
 
 
-	public ParPays(long id) {
+	public ParVille(long id) {
 		this.id = id;
 	}
 
@@ -68,11 +80,21 @@ public class ParPays {
 	public void setTitleFr(String titleFr) {
 		this.titleFr = titleFr;
 	}
+	@OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "pays_id", referencedColumnName = "id")
+	public ParPays getPays() {
+		return pays;
+	}
+
+
+	public void setPays(ParPays pays) {
+		this.pays = pays;
+	}
 
 
 	@Override
 	public String toString() {
-		return "ParPays [id=" + id + ", titleAr=" + titleAr + ", titleFr=" + titleFr + "]";
+		return "ParVille [id=" + id + ", titleAr=" + titleAr + ", titleFr=" + titleFr + ", pays=" + pays + "]";
 	}
 	
 	

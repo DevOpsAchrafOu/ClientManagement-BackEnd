@@ -10,8 +10,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
-import ma.mang.be.api.model.ParPays;
-import ma.mang.be.api.model.ParVille;
+import ma.mang.be.api.entity.ParPays;
+import ma.mang.be.api.entity.ParVille;
+import ma.mang.be.api.exception.NotFoundElementException;
 import ma.mang.be.api.repository.ParPaysRepository;
 import ma.mang.be.api.repository.ParVilleRepository;
 
@@ -36,7 +37,7 @@ public class ParVilleServiceImpl implements ParVilleService {
 	}
 
 	@Override
-	public ParVille getParVilleById(Long id) throws Exception {
+	public ParVille getParVilleById(Long id) throws NotFoundElementException {
 		return ParVilleRepo.getById(id);
 	}
 

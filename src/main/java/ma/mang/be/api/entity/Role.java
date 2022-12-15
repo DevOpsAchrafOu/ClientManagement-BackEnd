@@ -1,4 +1,4 @@
-package ma.mang.be.api.model;
+package ma.mang.be.api.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

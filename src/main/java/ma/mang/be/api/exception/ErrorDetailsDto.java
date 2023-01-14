@@ -5,24 +5,33 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * 
- * @author jalal
+ * @author achraf
  *
  */
-public class ExceptionModel {
+public class ErrorDetailsDto {
 
 	private String url;
 	private String message;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private LocalDateTime timestampe;
+	
+    private String details;
 
-	public ExceptionModel() {
+	public ErrorDetailsDto() {
 		this.timestampe = LocalDateTime.now();
 	}
-
-	public ExceptionModel(String url, String message) {
+	
+	public ErrorDetailsDto(String url, String message) {
 		this();
 		this.url = url;
 		this.message = message;
+	}
+
+	public ErrorDetailsDto(String url, String message, String details) {
+		this();
+		this.url = url;
+		this.message = message;
+		this.details = details;
 	}
 
 	public String getUrl() {
@@ -48,4 +57,14 @@ public class ExceptionModel {
 	public void setTimestampe(LocalDateTime timestampe) {
 		this.timestampe = timestampe;
 	}
+
+	public String getDetails() {
+		return details;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
+	}
+	
+	
 }

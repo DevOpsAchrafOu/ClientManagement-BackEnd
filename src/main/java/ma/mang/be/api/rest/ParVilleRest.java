@@ -30,7 +30,7 @@ import ma.mang.be.api.service.ParVilleService;
  */
 @RestController
 @RequestMapping("api/mang/v1")
-@Api(tags = { "02 - ParVilles : REST Interfaces to manipulate ParVille objects" })
+@Api(tags = { "11 - ParVilles : REST Interfaces to manipulate ParVille objects" })
 public class ParVilleRest {
 	
 	private static final String MSG_FAILED_REQUEST= "Request failed. Please try later!";
@@ -44,6 +44,7 @@ public class ParVilleRest {
 
 	@PostMapping("/villes")
 	@ApiOperation(notes = "Creates a ville ", value = "", response = ParVilleDto.class)
+	@Deprecated
 	public ResponseEntity<?> addParVille(@RequestBody ParVilleDto villeDetails)
 			throws Exception {
 		ParVille m =null;
@@ -59,6 +60,7 @@ public class ParVilleRest {
 	
 	@GetMapping("/villes")
 	@ApiOperation(notes = "Retrieves all ville", value = "", response = ParVille.class)
+	@Deprecated
 	public ResponseEntity<List<ParVilleDto>> getParVilles() throws NotFoundElementException {
 		List<ParVille> villes = villeService.getAllParVilles();
 		return ResponseEntity.ok(ParVilleDto.convertToDto(villes));
@@ -67,6 +69,7 @@ public class ParVilleRest {
 
 	@GetMapping("/villes/{id}")
 	@ApiOperation(notes = "Retrieves ville by ID", value = "", response = ParVille.class)
+	@Deprecated
 	public ResponseEntity<ParVilleDto> getParVilleById(@PathVariable(value = "id") Long villeId) throws NotFoundElementException {
 		ParVille ville = villeService.getParVilleById(villeId);
 		if (ville == null) {
@@ -78,6 +81,7 @@ public class ParVilleRest {
 	
 	@GetMapping("/villes/pays/{id}")
 	@ApiOperation(notes = "Retrieves ville by ID", value = "", response = ParVille.class)
+	@Deprecated
 	public List<ParVilleDto>  getParVilleByPaysId(@PathVariable(value = "id") Long id) throws NotFoundElementException {
 		List<ParVille> villes = villeService.getParVilleByPaysId(id);
 		if (villes == null) {
@@ -90,6 +94,7 @@ public class ParVilleRest {
 
 	@PutMapping("/villes/{id}")
 	@ApiOperation(notes = "Updates a ville identified by ID", value = "", response = String.class)
+	@Deprecated
 	public ResponseEntity<?> updateParVille(@PathVariable(value = "id") Long villeId, @RequestBody ParVilleDto villeDetails)
 			throws Exception {
 		ParVille ville = villeService.getParVilleById(villeId);
@@ -109,6 +114,7 @@ public class ParVilleRest {
 
 	@DeleteMapping("/villes/{id}")
 	@ApiOperation(notes = "Deletes a ville identified by ID from database", value = "", response = String.class)
+	@Deprecated
 	public ResponseEntity<?> deleteParVille(@PathVariable(value = "id") Long villeId) throws NotFoundElementException {
 		ParVille ville = villeService.getParVilleById(villeId);
 		if(ville==null) {

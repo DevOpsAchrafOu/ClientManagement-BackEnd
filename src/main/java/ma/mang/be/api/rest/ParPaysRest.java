@@ -31,7 +31,8 @@ import ma.mang.be.api.service.ParPaysService;
  */
 @RestController
 @RequestMapping("api/mang/v1")
-@Api(tags = { "01 - ParPayss : REST Interfaces to manipulate ParPays objects" })
+@Api(tags = { "10 - ParPayss : REST Interfaces to manipulate ParPays objects" })
+@Deprecated
 public class ParPaysRest {
 	
 	private static final String MSG_FAILED_REQUEST= "Request failed. Please try later!";
@@ -45,6 +46,7 @@ public class ParPaysRest {
 
 	@PostMapping("/pays")
 	@ApiOperation(notes = "Creates a pays ", value = "", response = ParPaysDto.class)
+	@Deprecated
 	public ResponseEntity<?> addParPays(@RequestBody ParPaysDto paysDetails)
 			throws Exception {
 		ParPays m =null;
@@ -61,6 +63,7 @@ public class ParPaysRest {
 	
 	@GetMapping("/pays")
 	@ApiOperation(notes = "Retrieves all pays", value = "", response = ParPays.class)
+	@Deprecated
 	public ResponseEntity<List<ParPaysDto>> getParPayss() throws ResourceNotFoundException {
 		List<ParPays> pays = paysService.getAllParPayss();
 		return ResponseEntity.ok(ParPaysDto.convertToDto(pays));
@@ -69,6 +72,7 @@ public class ParPaysRest {
 
 	@GetMapping("/pays/{id}")
 	@ApiOperation(notes = "Retrieves pays by ID", value = "", response = ParPays.class)
+	@Deprecated
 	public ResponseEntity<ParPaysDto> getParPaysById(@PathVariable(value = "id") Long paysId) throws NotFoundElementException {
 		ParPays pays = paysService.getParPaysById(paysId);
 		if (pays == null) {
@@ -81,6 +85,7 @@ public class ParPaysRest {
 
 	@PutMapping("/pays/{id}")
 	@ApiOperation(notes = "Updates a pays identified by ID", value = "", response = String.class)
+	@Deprecated
 	public ResponseEntity<?> updateParPays(@PathVariable(value = "id") Long paysId, @RequestBody ParPaysDto paysDto)
 			throws Exception {
 		ParPays pays = paysService.getParPaysById(paysId);
@@ -100,6 +105,7 @@ public class ParPaysRest {
 
 	@DeleteMapping("/pays/{id}")
 	@ApiOperation(notes = "Deletes a pays identified by ID from database", value = "", response = String.class)
+	@Deprecated
 	public ResponseEntity<?> deleteParPays(@PathVariable(value = "id") Long paysId) throws NotFoundElementException {
 		ParPays pays = paysService.getParPaysById(paysId);
 		if(pays==null) {

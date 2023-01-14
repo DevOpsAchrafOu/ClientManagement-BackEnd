@@ -34,6 +34,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ma.mang.be.api.exception.ErrorDetailsDto;
 import ma.mang.be.api.entity.Utilisateur;
 import ma.mang.be.api.security.model.AppUser;
+import ma.mang.be.api.security.model.JwtLogin;
 import ma.mang.be.api.service.AuthService;
 import ma.mang.be.api.service.UtilisateurService;
 import ma.mang.be.api.utils.Utils;

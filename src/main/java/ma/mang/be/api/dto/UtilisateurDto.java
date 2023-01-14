@@ -42,16 +42,16 @@ public class UtilisateurDto {
 
     public UtilisateurDto(String email, String password) {
 		super();
-		this.email = email;
 		this.login = email;
+		this.email = email;
 		this.password = password;
 		this.creationDate= new Date();
 	}
     
     public UtilisateurDto(String email, String password, String token,String state) {
 		super();
-		this.email = email;
 		this.login = email;
+		this.email = email;
 		this.password = password;
 		this.creationDate= new Date();
 		this.token=token;
@@ -61,44 +61,44 @@ public class UtilisateurDto {
 	
     
 
-	public UtilisateurDto(long id, String login, String nom, String prenom, String phone, String email, String token,
+	public UtilisateurDto(long id, String login, String email, String token, String nom, String prenom, String phone, 
 			 String state, String role) {
 		super();
 		this.id = id;
 		this.login = login;
+		this.email = email;
+		this.token = token;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.phone = phone;
-		this.email = email;
-		this.token = token;
 		this.state = state;
 		this.role = role;
 	}
 	
 	//without token, password
-	public UtilisateurDto(long id, String login, String nom, String prenom, String phone, String email,  String state, String role) {
+	public UtilisateurDto(long id, String login, String email, String nom, String prenom, String phone, String state, String role) {
 		super();
 		this.id = id;
 		this.login = login;
+		this.email = email;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.phone = phone;
-		this.email = email;
 		this.state = state;
 		this.role = role;
 	}
 
-	public UtilisateurDto(long id, String login, String nom, String prenom, String phone, String email, String password,
-			String token, String state, String role) {
+	public UtilisateurDto(long id, String login, String email, String password,
+			String token, String nom, String prenom, String phone, String state, String role) {
 		super();
 		this.id = id;
 		this.login = login;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.phone = phone;
 		this.email = email;
 		this.password = password;
 		this.token = token;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.phone = phone;
 		this.state = state;
 		this.role = role;
 	}
@@ -220,11 +220,11 @@ public class UtilisateurDto {
 			return new Utilisateur(
 					user.getId(),
 					user.getLogin(),
+					user.getEmail(),
+					user.getPassword(),
 					user.getNom(),
 					user.getPrenom(),
 					user.getPhone(),
-					user.getEmail(),
-					user.getPassword(),
 					user.getRole());
 		}
 		

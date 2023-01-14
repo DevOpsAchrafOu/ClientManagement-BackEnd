@@ -106,19 +106,19 @@ public class UtilisateurServiceImpl implements UtilisateurService, UserDetailsSe
 			//Get role 
 			Role role = roleRepo.findByCode(usr.getRole().getCode());
 			// Create JWT connection Token
-			token = createJWT(usr, role!=null ? role.getCode():"ROLE_USER");
+			token = createJWT(usr, role != null ? role.getCode() : "ROLE_USER");
 
 			// Create an entry in the database
 			Utilisateur newColl = usrRepo
 					.save(new Utilisateur(
 							0,
 							usr.getLogin(),
-							usr.getNom(),
-							usr.getPrenom(),
-							usr.getPhone(),
 							usr.getEmail(),
 							passwordEncoder.encode(usr.getPassword()),
 							token,
+							usr.getNom(),
+							usr.getPrenom(),
+							usr.getPhone(),
 							new Date(),
 							Utilisateur.ACTIVATED_STATE,
 							role));

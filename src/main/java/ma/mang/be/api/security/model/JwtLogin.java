@@ -1,4 +1,4 @@
-package ma.mang.be.api.security.jwt;
+package ma.mang.be.api.security.model;
 
 /**
  * Object used to perform login

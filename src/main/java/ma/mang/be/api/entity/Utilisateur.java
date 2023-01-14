@@ -50,35 +50,34 @@ public class Utilisateur {
 
     public Utilisateur(String email, String password) {
 		super();
-		this.email = email;
 		this.login = email;
+		this.email = email;
 		this.password = password;
 		this.creationDate= new Date();
 	}
     
     public Utilisateur(String email, String password, String token,String state) {
 		super();
-		this.email = email;
 		this.login = email;
+		this.email = email;
 		this.password = password;
 		this.creationDate= new Date();
 		this.token=token;
 		this.state=state;
 	}
     
-    
    //without token, state
-    public Utilisateur(long id, String login, String nom, String prenom, String phone, String email, String password,
-			String role) {
+	public Utilisateur(long id, String login, String email, String password, String nom, String prenom,
+			String phone, String role) {
 		super();
 		this.id = id;
 		this.login = login;
+		this.email = email;
+		this.password = password;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.phone = phone;
-		this.email = email;
-		this.password = password;
-		this.role = new Role(role);;
+		this.role = new Role(role);
 	}
     
     

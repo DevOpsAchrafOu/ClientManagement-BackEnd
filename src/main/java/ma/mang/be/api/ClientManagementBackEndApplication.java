@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -22,6 +23,11 @@ public class ClientManagementBackEndApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ClientManagementBackEndApplication.class, args);
+	}
+	
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 
 }

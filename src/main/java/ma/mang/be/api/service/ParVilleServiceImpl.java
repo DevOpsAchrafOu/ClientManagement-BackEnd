@@ -18,7 +18,7 @@ import ma.mang.be.api.repository.ParVilleRepository;
 
 /**
  * @author achraf
- * @version v0.1
+ * @version v1.0
  *
  */
 @Service("ParVilleService")

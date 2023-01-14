@@ -11,7 +11,7 @@ import ma.mang.be.api.exception.NotFoundElementException;
 /**
  * Specific Services to manipulate ParVilles 
  * @author achraf
- * @version v0.1
+ * @version v1.0
  */
 public interface ParVilleService {
 	

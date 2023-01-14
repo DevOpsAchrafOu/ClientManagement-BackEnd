@@ -16,7 +16,7 @@ import ma.mang.be.api.repository.ParPaysRepository;
 
 /**
  * @author achraf
- * @version v0.1
+ * @version v1.0
  *
  */
 @Service("ParPaysService")

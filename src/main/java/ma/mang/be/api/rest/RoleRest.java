@@ -31,7 +31,7 @@ import ma.mang.be.api.service.RoleService;
 /**
  * REST Interfaces to manipulate Role objects
  * @author achraf
- * @version v0.3
+ * @version v0.1
  */
 @RestController
 @RequestMapping("/api/v1")
@@ -68,12 +68,11 @@ public class RoleRest {
 		return ResponseEntity.ok(RoleDto.to(roles));
 	}
 
-
+	//
 	@GetMapping("/roles/collaborateur/count/{id}")
-	@ApiOperation(notes = "Retrieves role by ID count collaborateur", value = "", response = Long.class)
+	@ApiOperation(notes = "Count collaborateur by role ID ", value = "", response = Long.class)
 	public ResponseEntity<?> getRoleById(@PathVariable(value = "id") Long roleId) throws ResourceNotFoundException {
 		long count = roleService.countCollborateurByRole(roleId);
-
 
 		return ResponseEntity.ok(count);
 	}

@@ -12,7 +12,7 @@ import ma.mang.be.api.entity.ParVille;
 /**
  * DTO Class to manipulate ParVille objects in the front side
  * @author achraf
- * @version v0.1
+ * @version v1.0
  *
  */
 public class ParVilleDto {

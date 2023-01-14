@@ -78,39 +78,13 @@ public class Utils {
 		return m.find();
 	}
 	
-	
-	/**
-	 * Checks if a given row from Excel Sheet is empty or no.
-	 * @param row from Excel Sheet
-	 * @return true if the row is empty, false else
-	 */
-	public static boolean checkIfRowIsEmpty(Row row) {
-	    if (row == null) {
-	        return true;
-	    }
-	    if (row.getLastCellNum() <= 0) {
-	        return true;
-	    }
-//	    System.out.print("\n"+row.getRowNum() +"\t");
-	    for (int cellNum = row.getFirstCellNum(); cellNum < row.getLastCellNum(); cellNum++) {
-	        Cell cell = row.getCell(cellNum);
-//	        System.out.print(cellNum + " : " + cell.getCellType()  + " "+ cell.toString() +"| \t");
-	        if (cell != null 
-	        		&& (cell.getCellType() != Cell.CELL_TYPE_BLANK && cell.getCellType() != Cell.CELL_TYPE_FORMULA &&  !isEmpty(cell.toString()))
-	        		&& !row.getZeroHeight()) {
-	            return false;
-	        }
-	    }
-	    return true ;
-	}
-	
 	/**
 	* check if a string is empty
 	*
 	* @param s
 	* @return
 	*/
-	public static boolean isEmpty(String s) {
+	public static boolean isEmptyString(String s) {
 	return (s == null || s.equals("") || s.equals("NaN") || s	.equals("null") || s.trim().length()==0);
 	}
 	
@@ -121,7 +95,7 @@ public class Utils {
 	* @param s
 	* @return
 	*/
-	public static boolean isEmpty(String[] str) {
+	public static boolean isEmptyStringArray(String[] str) {
 		int cnt = 1;
 		
 		if(str==null) return true;
@@ -129,19 +103,19 @@ public class Utils {
 		if(str!=null && str.length==0) return true;
 		
 		for(String s : str) {
-			if(isEmpty(s)) cnt++;
+			if(isEmptyString(s)) cnt++;
 		}
 		return cnt==str.length;
 	}
 	
 	
 	/**
-	* check if a string array is empty
+	* check if a string array is empty for Each element
 	*
 	* @param s
 	* @return
 	*/
-	public static boolean isEmpty(String[] str,int[] ids) {
+	public static boolean isEmptyStringArrayForEach(String[] str,int[] ids) {
 		int cnt = 0;
 		
 		if(str==null) return true;
@@ -149,7 +123,7 @@ public class Utils {
 		if(str!=null && str.length==0) return true;
 		
 		for(int id : ids) {
-			if(isEmpty(str[id])) {
+			if(isEmptyString(str[id])) {
 				cnt++;
 			}
 		}

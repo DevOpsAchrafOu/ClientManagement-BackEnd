@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 /**
  * @author achraf
- *
+ * @version v1.0
  */
 @Entity
 @Table(name = "par_pays")

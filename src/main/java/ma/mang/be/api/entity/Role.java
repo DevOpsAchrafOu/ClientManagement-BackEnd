@@ -29,6 +29,12 @@ public class Role {
 		this.title = title;
 		this.code = code;
 	}
+	
+	public Role( String title, String code) {
+		super();
+		this.title = title;
+		this.code = code;
+	}
 
 	public Role(String code) {
 		super();

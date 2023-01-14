@@ -26,7 +26,7 @@ import ma.mang.be.api.service.ParVilleService;
 /**
  * REST Api to manipulate ParVille objects
  * @author achraf
- * @version v0.3
+ * @version v1.0
  */
 @RestController
 @RequestMapping("api/mang/v1")

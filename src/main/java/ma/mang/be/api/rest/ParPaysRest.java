@@ -27,7 +27,7 @@ import ma.mang.be.api.service.ParPaysService;
 /**
  * REST Api to manipulate ParPays objects
  * @author achraf
- * @version v0.3
+ * @version v1.0
  */
 @RestController
 @RequestMapping("api/mang/v1")

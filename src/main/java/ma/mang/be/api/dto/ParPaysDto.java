@@ -9,7 +9,7 @@ import ma.mang.be.api.entity.ParPays;
 /**
  * DTO Class to manipulate ParPays objects in the front side
  * @author achraf
- * @version v0.1
+ * @version v1.0
  *
  */
 

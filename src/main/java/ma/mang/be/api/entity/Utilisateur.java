@@ -19,26 +19,27 @@ import org.reflections.util.Utils;
 
 /**
  * @author achraf
- *
+ *  @version v0.1
  */
 @Entity
 @Table(name = "utilisateur")
 public class Utilisateur {
 	
-	public static final String ACTIVATED_STATE = "ACTIVATED";
-	public static final String DEACTIVATED_STATE = "DEACTIVATED";
-	public static final String DELETED_STATE = "DELETED";
-	public static final String BLOCKED_STATE = "BLOCKED";
+	public static final String PENDING_STATE = "PENDING";// he has to complete the profile info
+	public static final String ACTIVATED_STATE = "ACTIVATED";//  he has complete the profile info and activation by Administrator
+	public static final String DEACTIVATED_STATE = "DEACTIVATED";// deactivation by Administrator
+	public static final String DELETED_STATE = "DELETED";// delete by Administrator
+	public static final String BLOCKED_STATE = "BLOCKED";// blocked by Administrator
+	
 	
 	private long id;
 	private String login;
-	private String nom;
-	private String prenom;
-	private String phone;
-	private String entite;
 	private String email;
 	private String password;
 	private String token;
+	private String nom;
+	private String prenom;
+	private String phone;
 	private Date creationDate;
 	private String state;
 	private Role role;
@@ -65,45 +66,37 @@ public class Utilisateur {
 		this.state=state;
 	}
     
-	public Utilisateur(String login, String nom, String prenom, String phone, String entite, String email,
-			String password, String token,String state, Role role) {
-		super();
-		this.login = login;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.phone = phone;
-		this.entite = entite;
-		this.email = email;
-		this.password = password;
-		this.token = token;
-		this.state = state;
-		this.role = role;
-	}
-	
-	public Utilisateur(String login, String nom, String prenom, String phone, String entite, String email,
-			String password, String role) {
-		super();
-		this.login = login;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.phone = phone;
-		this.entite = entite;
-		this.email = email;
-		this.password = password;
-		this.role = new Role(role);
-	}
-	public Utilisateur(long id,String login, String nom, String prenom, String phone, String entite, String email,
-			String password, String role) {
+    
+   //without token, state
+    public Utilisateur(long id, String login, String nom, String prenom, String phone, String email, String password,
+			String role) {
 		super();
 		this.id = id;
 		this.login = login;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.phone = phone;
-		this.entite = entite;
 		this.email = email;
-//		this.password = password;
-		this.role = new Role(role);
+		this.password = password;
+		this.role = new Role(role);;
+	}
+    
+    
+
+	public Utilisateur(long id, String login, String email, String password, String token, String nom, String prenom,
+			String phone, Date creationDate, String state, Role role) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.email = email;
+		this.password = password;
+		this.token = token;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.phone = phone;
+		this.creationDate = creationDate;
+		this.state = state;
+		this.role = role;
 	}
 
 	@Id
@@ -200,15 +193,6 @@ public class Utilisateur {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	@Column(name="entite")
-	public String getEntite() {
-		return entite;
-	}
-
-	public void setEntite(String entite) {
-		this.entite = entite;
 	}
 
 	public void setRole(Role role) {

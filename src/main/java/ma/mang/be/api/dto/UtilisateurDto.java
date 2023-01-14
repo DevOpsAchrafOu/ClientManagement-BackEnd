@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Column;
 import org.reflections.util.Utils;
 
+import ma.mang.be.api.entity.ParPays;
+import ma.mang.be.api.entity.ParVille;
 import ma.mang.be.api.entity.Utilisateur;
 
 /**
@@ -23,13 +25,12 @@ public class UtilisateurDto {
 	
 	private long id;
 	private String login;
-	private String nom;
-	private String prenom;
-	private String phone;
-	private String entite;
 	private String email;
 	private String password;
 	private String token;
+	private String nom;
+	private String prenom;
+	private String phone;
 	private Date creationDate;
 	private String state;
 	private String role;
@@ -57,35 +58,10 @@ public class UtilisateurDto {
 		this.state=state;
 	}
     
-	public UtilisateurDto(String login, String nom, String prenom, String phone, String entite, String email,
-			String password, String token,String state, String role) {
-		super();
-		this.login = login;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.phone = phone;
-		this.entite = entite;
-		this.email = email;
-		this.password = password;
-		this.token = token;
-		this.state = state;
-		this.role = role;
-	}
 	
-	public UtilisateurDto(String login, String nom, String prenom, String phone, String entite, String email,
-			 String state, boolean isTemporaryPwd, String role) {
-		super();
-		this.login = login;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.phone = phone;
-		this.entite = entite;
-		this.email = email;
-		this.state = state;
-		this.role = role;
-	}
-	
-	public UtilisateurDto(long id,String login, String nom, String prenom, String phone, String entite, String email,
+    
+
+	public UtilisateurDto(long id, String login, String nom, String prenom, String phone, String email, String token,
 			 String state, String role) {
 		super();
 		this.id = id;
@@ -93,11 +69,40 @@ public class UtilisateurDto {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.phone = phone;
-		this.entite = entite;
+		this.email = email;
+		this.token = token;
+		this.state = state;
+		this.role = role;
+	}
+	
+	//without token, password
+	public UtilisateurDto(long id, String login, String nom, String prenom, String phone, String email,  String state, String role) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.phone = phone;
 		this.email = email;
 		this.state = state;
 		this.role = role;
 	}
+
+	public UtilisateurDto(long id, String login, String nom, String prenom, String phone, String email, String password,
+			String token, String state, String role) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.phone = phone;
+		this.email = email;
+		this.password = password;
+		this.token = token;
+		this.state = state;
+		this.role = role;
+	}
+	
 
 	public long getId() {
 		return id;
@@ -144,7 +149,7 @@ public class UtilisateurDto {
 	public void setToken(String token) {
 		this.token = token;
 	}
-
+	
 	public Date getCreationDate() {
 		return creationDate;
 	}
@@ -185,14 +190,6 @@ public class UtilisateurDto {
 		this.phone = phone;
 	}
 
-	public String getEntite() {
-		return entite;
-	}
-
-	public void setEntite(String entite) {
-		this.entite = entite;
-	}
-
 	public void setRole(String role) {
 		this.role = role;
 	}
@@ -203,10 +200,12 @@ public class UtilisateurDto {
 
 	public static UtilisateurDto from(Utilisateur user) {
 		if(user!=null) {
-			return new UtilisateurDto(	user.getId(),user.getLogin(),
-					user.getNom(),user.getPrenom(),
+			return new UtilisateurDto(	
+					user.getId(),
+					user.getLogin(),
+					user.getNom(),
+					user.getPrenom(),
 					user.getPhone(),
-					user.getEntite(),
 					user.getEmail(),
 					user.getState(),
 					user.getRole().getCode());
@@ -218,11 +217,12 @@ public class UtilisateurDto {
 	
 	public static Utilisateur to(UtilisateurDto user) {
 		if(user!=null) {
-			return new Utilisateur(user.getLogin(),
+			return new Utilisateur(
+					user.getId(),
+					user.getLogin(),
 					user.getNom(),
 					user.getPrenom(),
 					user.getPhone(),
-					user.getEntite(),
 					user.getEmail(),
 					user.getPassword(),
 					user.getRole());

@@ -48,7 +48,7 @@ import ma.mang.be.api.service.UtilisateurService;
  *
  */
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/mang/v1")
 @Api(tags = { "02 - Utilisateurs : REST Interfaces to manipulate Utilisateur objects" })
 public class UtilisateurRest {
 	

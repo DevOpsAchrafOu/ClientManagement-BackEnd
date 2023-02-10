@@ -30,7 +30,7 @@ import ma.mang.be.api.service.ParPaysService;
  * @version v1.0
  */
 @RestController
-@RequestMapping("api/mang/v1")
+@RequestMapping("api/mng/v1")
 @Api(tags = { "10 - ParPayss : REST Interfaces to manipulate ParPays objects" })
 @Deprecated
 public class ParPaysRest {

@@ -34,7 +34,7 @@ import ma.mang.be.api.utils.Utils;
  * @version v0.1
  */
 @RestController
-@RequestMapping("/api/mang//v1/public")
+@RequestMapping("/api/mng/v1/public")
 @Api(tags = { "00 - Public : REST Interfaces to consume free services" })
 public class PublicRest {
 	

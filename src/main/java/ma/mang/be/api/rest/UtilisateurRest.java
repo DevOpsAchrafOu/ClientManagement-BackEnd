@@ -48,7 +48,7 @@ import ma.mang.be.api.service.UtilisateurService;
  *
  */
 @RestController
-@RequestMapping("/api/mang/v1")
+@RequestMapping("/api/mng/v1")
 @Api(tags = { "02 - Utilisateurs : REST Interfaces to manipulate Utilisateur objects" })
 public class UtilisateurRest {
 	
@@ -76,19 +76,19 @@ public class UtilisateurRest {
 				response.setStatus(HttpServletResponse.SC_CREATED);
 				response.addHeader(JwtProperties.HEADER_STRING, result);
 				response.getOutputStream().print(new ObjectMapper().writeValueAsString(
-						new ResponseDto(MSG_USER_CREATED, HttpStatus.CREATED.toString(), "/v1/users/"+acc.getId(),acc.getId())));
+						new ResponseDto(MSG_USER_CREATED, HttpStatus.CREATED.toString(), "/v1/utilisateurs/"+acc.getId(),acc.getId())));
 				response.flushBuffer();
 			}
 	}
 
 
-	@GetMapping("/users")
+	@GetMapping("/utilisateurs")
 	@ApiOperation(notes = "Retrieves all users (Note : Used for debug and test purposes)", value = "", response = UtilisateurDto.class)
 	public List<UtilisateurDto> getAllUsers() {
 		return UtilisateurDto.to(userService.getAllUsers());
 	}
 
-	@GetMapping("/users/{id}")
+	@GetMapping("/utilisateurs/{id}")
 	@ApiOperation(notes = "Retrieves user by ID (Note : Used for debug and test purposes)", value = "", response = UtilisateurDto.class)
 	public @ResponseBody ResponseEntity<?> getUserById(@PathVariable(value = "id") Long userId) throws NotFoundElementException  {
 		Utilisateur user = userService.getUserById(userId);
@@ -98,7 +98,7 @@ public class UtilisateurRest {
 		return ResponseEntity.ok(UtilisateurDto.from(user));
 	}
 
-	@GetMapping("/users/my")
+	@GetMapping("/utilisateurs/me")
 	@ApiOperation(notes = "Retrieves connected user data", value = "", response = UtilisateurDto.class)
 	public @ResponseBody ResponseEntity<?> getConnectedUser() throws NotFoundElementException {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -111,7 +111,7 @@ public class UtilisateurRest {
 	}
 
 
-	@PutMapping("/users/{id}")
+	@PutMapping("/utilisateurs/{id}")
 	@ApiOperation(notes = "Updates an user identified by ID (Note : Used for debug and test purposes)", value = "", response = Utilisateur.class)
 	public ResponseEntity<UtilisateurDto> updateUser(@PathVariable(value = "id") Long userId, @RequestBody UtilisateurDto userDetails)
 			throws NotFoundElementException {
@@ -124,7 +124,7 @@ public class UtilisateurRest {
 		return ResponseEntity.ok(UtilisateurDto.from(updatedUser));
 	}
 
-	@DeleteMapping("/users/{id}")
+	@DeleteMapping("/utilisateurs/{id}")
 	@ApiOperation(notes = "Deletes an user identified by ID from database (Note : Used for debug and test purposes)", value = "", response = Utilisateur.class)
 	public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long userId) throws NotFoundElementException {
 		Utilisateur user = userService.getUserById(userId);
@@ -137,7 +137,7 @@ public class UtilisateurRest {
 		return response;
 	}
 	
-	@PutMapping("/users")
+	@PutMapping("/utilisateurs")
 	@ApiOperation(notes = "Changes the status of the connected user", value = "", response = String.class)
 	@Deprecated
 	public ResponseEntity<?> setAccountState(@RequestParam(value = "status") String status)
@@ -151,7 +151,7 @@ public class UtilisateurRest {
 		return ResponseEntity.ok(message);
 	}
 	
-	@PutMapping("/users/passwords")
+	@PutMapping("/utilisateurs/passwords")
 	@ApiOperation(notes = "Changes the password of the connected user", value = "", response = String.class)
 	public ResponseEntity<?> setPassword(@RequestBody PasswordDto pwd) throws Exception, NotFoundElementException,NotEqualsException {
 		Map<String, String> response = new HashMap<>();

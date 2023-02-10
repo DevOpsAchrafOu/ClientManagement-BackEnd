@@ -29,7 +29,7 @@ import ma.mang.be.api.service.ParVilleService;
  * @version v1.0
  */
 @RestController
-@RequestMapping("api/mang/v1")
+@RequestMapping("api/mng/v1")
 @Api(tags = { "11 - ParVilles : REST Interfaces to manipulate ParVille objects" })
 public class ParVilleRest {
 	

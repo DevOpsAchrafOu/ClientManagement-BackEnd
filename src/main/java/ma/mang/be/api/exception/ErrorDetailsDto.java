@@ -12,23 +12,19 @@ public class ErrorDetailsDto {
 
 	private String url;
 	private String message;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-	private LocalDateTime timestampe;
+	private String timestampe;
 	
     private String details;
 
-	public ErrorDetailsDto() {
-		this.timestampe = LocalDateTime.now();
-	}
 	
 	public ErrorDetailsDto(String url, String message) {
-		this();
+		super();
 		this.url = url;
 		this.message = message;
 	}
 
 	public ErrorDetailsDto(String url, String message, String details) {
-		this();
+		super();
 		this.url = url;
 		this.message = message;
 		this.details = details;
@@ -48,14 +44,6 @@ public class ErrorDetailsDto {
 
 	public void setMessage(String message) {
 		this.message = message;
-	}
-
-	public LocalDateTime getTimestampe() {
-		return timestampe;
-	}
-
-	public void setTimestampe(LocalDateTime timestampe) {
-		this.timestampe = timestampe;
 	}
 
 	public String getDetails() {

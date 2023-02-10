@@ -34,7 +34,7 @@ import ma.mang.be.api.service.RoleService;
  * @version v0.1
  */
 @RestController
-@RequestMapping("/api/mang/v1")
+@RequestMapping("/api/mng/v1")
 @Api(tags = { "01 - Roles : REST Interfaces to manipulate Role objects" })
 public class RoleRest {
 	

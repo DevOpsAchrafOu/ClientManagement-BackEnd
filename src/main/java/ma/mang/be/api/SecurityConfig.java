@@ -49,8 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.anonymous()
 		.and()
 		.authorizeRequests()
-		.antMatchers("/api/v1/public/**").permitAll()
-		.antMatchers("/api/v1/signup").permitAll()
+		.antMatchers("/api/mng/v1/public/**").permitAll()
+		.antMatchers("/api/mng/v1/signup").permitAll()
 		.antMatchers(HttpMethod.POST,"/login").permitAll()
 		.antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
 				"/configuration/security", "/swagger-ui.html**", "/webjars/**","/swagger/**").permitAll()
@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.logout()
 		.clearAuthentication(true)
-		.logoutSuccessUrl("/api/v1/public/logout")
+		.logoutSuccessUrl("/api/mng/v1/public/logout")
 		.addLogoutHandler(new HeaderWriterLogoutHandler(
 				new ClearSiteDataHeaderWriter(Directive.ALL)))
 		.deleteCookies("JSESSIONID")

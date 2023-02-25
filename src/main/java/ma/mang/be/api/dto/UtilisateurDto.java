@@ -76,7 +76,8 @@ public class UtilisateurDto {
 	}
 	
 	//without token, password
-	public UtilisateurDto(long id, String login, String email, String nom, String prenom, String phone, String state, String role) {
+	public UtilisateurDto(long id, String login,  String nom, String prenom, String phone, String email, String state, String role,
+			Date creationDate) {
 		super();
 		this.id = id;
 		this.login = login;
@@ -86,6 +87,7 @@ public class UtilisateurDto {
 		this.phone = phone;
 		this.state = state;
 		this.role = role;
+		this.creationDate = creationDate;
 	}
 
 	public UtilisateurDto(long id, String login, String email, String password,
@@ -155,7 +157,7 @@ public class UtilisateurDto {
 	}
 
 	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate==null?new Date():creationDate;
+		this.creationDate = creationDate==null ? new Date() : creationDate;
 	}
 
 	public String getState() {
@@ -208,7 +210,8 @@ public class UtilisateurDto {
 					user.getPhone(),
 					user.getEmail(),
 					user.getState(),
-					user.getRole().getCode());
+					user.getRole().getCode(),
+					user.getCreationDate());
 		}
 		
 		 return new UtilisateurDto();

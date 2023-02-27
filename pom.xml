@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ma.mang.be.api</groupId>
-	<artifactId>ClientManagementBackEnd</artifactId>
+	<artifactId>ClientManagement-BackEnd</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ClientManagementBackEnd</name>
+	<name>ClientManagement-BackEnd</name>
 	<description>REST API for Client Management Back-End</description>
 	<properties>
 		<java.version>1.8</java.version>
@@ -116,7 +116,7 @@
 	
 
 	<build>
-	<finalName>ClientManagementBackEnd-${project.version}-${env}</finalName>
+	<finalName>ClientManagement-BackEnd-${project.version}-${env}</finalName>
 
 		<resources>
 			<resource>

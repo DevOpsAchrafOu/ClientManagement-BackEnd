@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.Column;
 import org.reflections.util.Utils;
 
-import ma.mang.be.api.entity.ParPays;
-import ma.mang.be.api.entity.ParVille;
 import ma.mang.be.api.entity.Utilisateur;
 
 /**

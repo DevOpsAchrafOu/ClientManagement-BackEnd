@@ -13,18 +13,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author Achraf
  * @version v0.1
  */
-@SpringBootApplication(exclude = IntegrationAutoConfiguration.class)
-@EnableAutoConfiguration
+
+
+@SpringBootApplication
 @EnableSwagger2
-public class ClientManagementBackEndApplication {
+public class SmartClientManagementBackEndApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ClientManagementBackEndApplication.class, args);
+		SpringApplication.run(SmartClientManagementBackEndApplication.class, args);
 	}
 	
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 
 }

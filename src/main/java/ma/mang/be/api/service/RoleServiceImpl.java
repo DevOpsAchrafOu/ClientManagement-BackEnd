@@ -3,6 +3,7 @@
  */
 package ma.mang.be.api.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
 import ma.mang.be.api.dto.RoleDto;
+import ma.mang.be.api.entity.Menu;
 import ma.mang.be.api.entity.Role;
+import ma.mang.be.api.repository.MenuRepository;
 import ma.mang.be.api.repository.RoleRepository;
 import ma.mang.be.api.repository.UtilisateurRepository;
 
@@ -25,6 +28,9 @@ public class RoleServiceImpl implements RoleService{
 	
 	@Autowired
 	RoleRepository roleRepo;
+	
+	@Autowired
+	MenuRepository menuRepo;
 	
 	@Autowired
 	UtilisateurRepository collRepo;
@@ -54,14 +60,27 @@ public class RoleServiceImpl implements RoleService{
 	@Override
 	public Role add(RoleDto roleDto) {
 
+		List<Menu> listM = new ArrayList<Menu>();	
+
 		//Prepare role
 		Role roleSave = new Role(roleDto.getTitle(),roleDto.getCode());
+		
+		for (int i = 0; i < roleDto.getMenus().size(); i++) {
+			
+			long idMenu = roleDto.getMenus().get(i);
+			Menu menu = menuRepo.findById(idMenu).get();
+			if(menu != null)
+				listM.add(menu);
+		}
+		roleSave.setMenu(listM);
 		
 		return roleRepo.save(roleSave);
 	}
 
 	@Override
 	public Role update(RoleDto roleDto) {
+
+		List<Menu> listM = new ArrayList<Menu>();	
 
 		//get role
 		Role roleFind = this.getRoleById(roleDto.getId());
@@ -70,6 +89,19 @@ public class RoleServiceImpl implements RoleService{
 			
 			roleFind.setCode(roleDto.getCode());
 			roleFind.setTitle(roleDto.getTitle());
+			
+			for (int i = 0; i < roleDto.getMenus().size(); i++) {
+				
+				long idMenu = roleDto.getMenus().get(i);
+				Menu menu = menuRepo.findById(idMenu).get();
+				if(menu != null)
+					listM.add(menu);
+			}
+			
+			//delete list menu old => implicitement
+			
+			//set list menu
+			roleFind.setMenu(listM);
 						
 			return roleRepo.save(roleFind);
 		}

@@ -69,8 +69,8 @@ public class RoleRest {
 	}
 
 	//
-	@GetMapping("/roles/collaborateur/count/{id}")
-	@ApiOperation(notes = "Count collaborateur by role ID ", value = "", response = Long.class)
+	@GetMapping("/roles/utilisateur/count/{id}")
+	@ApiOperation(notes = "Count utilisateur by role ID ", value = "", response = Long.class)
 	public ResponseEntity<?> getRoleById(@PathVariable(value = "id") Long roleId) throws ResourceNotFoundException {
 		long count = roleService.countCollborateurByRole(roleId);
 

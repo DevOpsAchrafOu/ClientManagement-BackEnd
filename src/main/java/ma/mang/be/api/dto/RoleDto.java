@@ -2,7 +2,9 @@ package ma.mang.be.api.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import ma.mang.be.api.entity.Menu;
 import ma.mang.be.api.entity.Role;
 
 
@@ -17,6 +19,7 @@ public class RoleDto {
 	private long id;
 	private String title;
 	private String code;
+	private List<Long> menus;
 
 	public RoleDto() {
 		super();
@@ -27,6 +30,14 @@ public class RoleDto {
 		this.id = id;
 		this.title = title;
 		this.code = code;
+	}
+	
+	public RoleDto(long id, String title, String code,List<Long> menus) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.code = code;
+		this.menus = menus;
 	}
 	
 	public long getId() {
@@ -54,6 +65,15 @@ public class RoleDto {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	public List<Long> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(List<Long> menus) {
+		this.menus = menus;
+	}
+
 
 	public static Role from(RoleDto dto) {
 		return new Role(dto.getId(), dto.getTitle(), dto.getCode());
@@ -65,7 +85,10 @@ public class RoleDto {
 		return new RoleDto(
 				role.getId(), 
 				role.getTitle(), 
-				role.getCode());
+				role.getCode(),
+				role.getMenu()
+				.stream().map(Menu::getId)
+		          .collect(Collectors.toList()));
 		
 	}
 	

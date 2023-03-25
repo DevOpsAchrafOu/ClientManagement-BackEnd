@@ -8,7 +8,7 @@ RUN mvn clean package -DskipTests
 #
 # Package stage
 #
-FROM openjdk:1.8-jdk-slim
+FROM openjdk:8-jdk-slim
 COPY --from=build /target/smartClientManagementBackEnd-0.0.1-SNAPSHOT-dev.jar smartClientManagementBackEnd.jar
 # ENV PORT=8081
 EXPOSE 8081

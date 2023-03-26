@@ -19,7 +19,7 @@ import org.reflections.util.Utils;
 
 /**
  * @author achraf
- *  @version v0.1
+ * @version v0.1
  */
 @Entity
 @Table(name = "utilisateur")

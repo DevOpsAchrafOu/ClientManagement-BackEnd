@@ -17,9 +17,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 
 
-@SpringBootApplication
-@EnableAutoConfiguration(
-exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
+@SpringBootApplication(exclude = IntegrationAutoConfiguration.class)
+@EnableAutoConfiguration
 @EnableSwagger2
 public class SmartClientManagementBackEndApplication {
 

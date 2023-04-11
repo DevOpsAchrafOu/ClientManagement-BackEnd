@@ -7,7 +7,7 @@
 FROM maven:3.8.2-jdk-8 AS build
 COPY . .
 #RUN mvn clean install -U -DskipTests -Pprod-deploy
-RUN mvn clean install -U -DskipTests -P prod
+RUN mvn clean package -DskipTests -Pprod
 #
 # Package stage
 #

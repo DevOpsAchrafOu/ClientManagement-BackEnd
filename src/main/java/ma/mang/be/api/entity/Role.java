@@ -31,8 +31,15 @@ public class Role {
 	private List<Menu> menu;
 
 
+
+	
 	public Role() {
 		super();
+	}
+	
+	public Role(long id) {
+		super();
+		this.id = id;
 	}
 	
 	public Role(long id, String title, String code) {

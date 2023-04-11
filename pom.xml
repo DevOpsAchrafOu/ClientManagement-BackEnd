@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ma.mang.be.api</groupId>
-	<artifactId>smartClientManagementBackEnd</artifactId>
+	<artifactId>smartClientManagement-BackEnd</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>smartClientManagementBackEnd</name>
+	<name>smartClientManagement-BackEnd</name>
 	<description>REST API for smart Client Management Back-End</description>
 	<properties>
 		<java.version>1.8</java.version>
@@ -38,9 +38,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -81,8 +84,15 @@
 		</dependency>
 		<!-- Swagger API -->
 		
+
+		<!-- To generate pwd -->
+		<!-- https://mvnrepository.com/artifact/org.apache.syncope.common/syncope-common-lib -->
+		<dependency>
+			<groupId>org.apache.syncope.common</groupId>
+			<artifactId>syncope-common-lib</artifactId>
+			<version>2.1.10</version>
+		</dependency>
 	</dependencies>
-	
 	
 	<profiles>
 		<profile>
@@ -94,7 +104,7 @@
 				<env>dev</env>
 			</properties>
 		</profile>
-		<profile>
+ 		<profile>
 			<id>rec</id>
 			<properties>
 				<env>rec</env>
@@ -108,11 +118,8 @@
 		</profile>
 	</profiles>
 	
-	
-
 	<build>
 	<finalName>smartClientManagementBackEnd-${project.version}-${env}</finalName>
-
 		<resources>
 			<resource>
 				<directory>src/main/resources/${env}</directory>

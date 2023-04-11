@@ -15,7 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.reflections.util.Utils;
+import ma.mang.be.api.utils.Utils;
+
 
 /**
  * @author achraf
@@ -97,6 +98,20 @@ public class Utilisateur {
 		this.state = state;
 		this.role = role;
 	}
+	
+	  public Utilisateur(int id, Date creationDate, String email, String login, String nom, String password, String phone, String prenom, String state, String token, int roleId) {
+	        this.id = id;
+	        this.creationDate = creationDate;
+	        this.email = email;
+	        this.login = login;
+	        this.nom = nom;
+	        this.password = password;
+	        this.phone = phone;
+	        this.prenom = prenom;
+	        this.state = state;
+	        this.token = token;
+	        this.role = new Role(roleId);
+	    }
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -163,7 +178,7 @@ public class Utilisateur {
 	}
 
 	public void setState(String state) {
-		this.state = Utils.isEmpty(state)?ACTIVATED_STATE:state;
+		this.state = Utils.isEmptyString(state)?ACTIVATED_STATE:state;
 	}
 
 

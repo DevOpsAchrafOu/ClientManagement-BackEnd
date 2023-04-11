@@ -45,6 +45,14 @@ public class ParVille {
 		this.titleFr = titleFr;
 		this.pays = new ParPays(idPays);
 	}
+	
+	public ParVille(long id,long idPays, String titleAr, String titleFr) {
+		super();
+		this.id = id;
+		this.titleAr = titleAr;
+		this.titleFr = titleFr;
+		this.pays = new ParPays(idPays);
+	}
 
 
 	public ParVille(long id) {

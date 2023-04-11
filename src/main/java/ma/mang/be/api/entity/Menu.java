@@ -63,6 +63,18 @@ public class Menu {
 		this.icon = icon;
 		this.parent=parentId==0?null:new Menu(parentId);
 	}
+	
+	public Menu(int id, String icon, int order, String titleAr, String titleFr, String typeNav, String url, Integer parentId) {
+		super();
+		this.id = id;
+		this.titleAr = titleAr;
+		this.titleFr = titleFr;
+		this.url = url;
+		this.ordre = order;
+		this.typeNav = typeNav;
+		this.icon = icon;
+		this.parent= parentId==0?null:new Menu(parentId);
+	}
 
 
 	public Menu(long id) {

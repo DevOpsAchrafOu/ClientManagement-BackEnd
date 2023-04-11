@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
-import org.reflections.util.Utils;
 
 import ma.mang.be.api.entity.Utilisateur;
+import ma.mang.be.api.utils.Utils;
 
 /**
  * DTO Class to manipulate Utilisateur objects in the front side
@@ -163,7 +163,7 @@ public class UtilisateurDto {
 	}
 
 	public void setState(String state) {
-		this.state = Utils.isEmpty(state) ? ACTIVATED_STATE : state;
+		this.state = Utils.isEmptyString(state) ? ACTIVATED_STATE : state;
 	}
 
 	public String getNom() {

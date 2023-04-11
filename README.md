@@ -1,110 +1,100 @@
-# E2C BO FrontEnd
+# smartClientManagement-BackEnd Backend REST API
 ### _v.0.1_
 
-This is the master branch of E2C frontEnd.
-This document decribes the steps to follow to build the project in a Debian/Ubuntu architecture.
+This is the master branch of smartClientManagement-BackEnd backend REST API.
+This document decribes the steps to follow to build the project in a windows architecture.
 
 ## Features
-- Signup, login and logout
-- Account management
-- Profile management
-- Association management
-- AP management : Create, View, submit
-- Rapport de démarrage mangement : view, process
-- Rapport mi-parcours management : view, process
-- Rapport final : view, process
-- Soumission management : view, process
+- Login and logout
+- User management
+- Role management
+- Menu management : Create, View, Update, List
+- Ville management : Create, View, Update, List
+- Pays management : Create, View, Update, List
 
-This text you see here is *actually- written in Markdown! To get a feel
-for Markdown's syntax, type some text into the left window and
-watch the results in the right.
 
 ## Tech
-E2C frontEnd uses a number of open source projects to work properly:
-- [Angular CLI v12.0.0]
-- [Node.js v16.15.1]
-- [npm v8]
+smartClientManagement-BackEnd backend uses a number of open source projects to work properly:
+- [Spring boot v2.7.10]
+- [Maven v3]
+- [Mysql connector v8.0.27][dev]
+- [swagger]
+- [Postgresql Database][prod]
 
-## Setup & Getting started
+## Installation
 
-1. Install [NodeJS](http://nodejs.org/) (If you done have)
+## Prerequisite
 
-2. If you have not installed angular yet,
+- To run the project, we recommand the use of:
+[Java 8]
+[Mysql database] v8+
+- To build the project, we recommand the use of:
+[Java v8]
+[Maven v3]
 
-#Install angular globally
+### Install the database
+We recommand the use of **Mysql Database v8.x+**
 
+
+### Install App
+Pull the project from the github repository (https://github.com/DevOpsAchrafOu/smartClientManagement-BackEnd)
+
+In the install directory **_$INSTALLATION_PATH/smartClientManagement-BackEnd_**
+
+Install the dependencies :
+
+For Dev environments...
+```sh
+cd $INSTALLATION_PATH/smartClientManagement-BackEnd
+mvn clean install -U -DskipTests  -P dev
 ```
-$ npm install -g @angular/cli@12.0.0-rc.2
+That will generate a jar file **smartClientManagement-BackEnd-api-0.1-dev.jar** _if you pulled the v0.1 version_
+
+For qualification environments...
+```sh
+cd $INSTALLATION_PATH/smartClientManagement-BackEnd
+mvn clean install -U -DskipTests  -P rec
+```
+That will generate a jar file **smartClientManagement-BackEnd-api-0.1-rec.jar** _if you pulled the v0.1 version_
+
+For production environments...
+```sh
+cd $INSTALLATION_PATH/smartClientManagement-BackEnd
+mvn clean install -U -DskipTests  -P prod
+```
+That will generate a jar file **smartClientManagement-BackEnd-api-0.1-prod.jar** _if you pulled the v0.1 version_
+
+### Run the App
+Run the following command (Prod case)
+```sh
+cd $INSTALLATION_PATH/smartClientManagement-BackEnd/target
+java -jar smartClientManagement-BackEnd-api-0.1-prod.jar
 ```
 
-3. Clone porjet FrontEnd
-
-```
-$ ng clone http://54.36.111.28:81/e2c/bo-frontend.git
-```
-
-4. navigate to BO-frontend/ directory.
-
-```   
-$ cd BO-frontend 
+If you want to use an external properties file, you can use the following command:
+```sh
+java -jar smartClientManagement-BackEnd-api-0.1-prod.jar --spring.config.location=file:_$INSTALLATION_PATH/smartClientManagement-BackEnd/config/application.properties
 ```
 
-5. then install dependencies
+The properties file defines the values of the variables used by the app. Please refer to [Environnement Variables](#env_variables)
 
-```
-$ npm install
-```
+This will generate the necessary tables needed to run the App.
+> **Note**: **`If this was not happen, please consider doing it manually`**
 
-6. Serve the application using (run dev)
+Check if all is well by following this link : http://localhost:8080/v1/public/about . This should show **REST API for OverMap App - Version : 0.1**
 
-
-6. Getting started
-
-Run `ng serve` for a dev server.
- 
-```
-$ ng serve
-```
-
-#Navigate to `http://localhost:4100/`. The app will automatically reload if you change any of the source files.
-
-### Building the project
-
-1. Run `ng build` to build the project.
-```
-$ ng build --prod --base-href '/admin/’
-```
- The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
- 
-# !!!! After re-name build folder `E2C-BO` it to `admin`
-
-2. create .htaccess file & add variables:
-
-- create file `Nouveau Document texte.txt` & re-name it to `.htaccess`
-- set your desired variable value
-```
-<IfModule mod_rewrite.c>
-    RewriteEngine on
-    RewriteCond %{REQUEST_FILENAME} -s [OR]
-    RewriteCond %{REQUEST_FILENAME} -l [OR]
-    RewriteCond %{REQUEST_FILENAME} -d
-    RewriteRule ^.*$ - [NC,L]
-    RewriteRule ^(.*) /admin/index.html [NC,L]
-</IfModule>
-```
-3. After copy/paste .htaccess file in build folder(admin)
-
-## Deploy Bo-frontend
-
-# Deploy Angular Bo-frontend App to Apache Server
-
-!. Install Apache2:
-Install from here: http://httpd.apache.org/docs/current/install.html
-
-2. Copy the dist/admin folder in /var/www/ folder.
-
+<a name="env_variables"></a>
+## Environnement variables
+smartClientManagement-BackEnd uses certain numbers of variables as described bellow :
+| Variable | Signification |
+| ------ | ------ |
+| app.version | The app version |
+| host.dns | The DNS host represating the route URL of the app (ex. http://test.smartClientManagement-BackEnd.ma/)|
+| spring.datasource.url | Database connexion URL |
+| spring.datasource.username | Database user |
+| spring.datasource.password | Database password |
 
 
 ## License
 
-E2C - copyright - 2022-2023
+smartClientManagement-BackEnd - copyright - 2023-2024

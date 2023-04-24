@@ -31,7 +31,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ma.mang.be.api.exception.ErrorDetailsDto;
+import ma.mang.be.api.exception.ExceptionDetailsDto;
 import ma.mang.be.api.entity.Utilisateur;
 import ma.mang.be.api.security.model.AppUser;
 import ma.mang.be.api.security.model.JwtLogin;
@@ -98,7 +98,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				response.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
 				
 					response.getOutputStream()
-							.print(new ObjectMapper().writeValueAsString(new ErrorDetailsDto(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), "Bad credentials", HttpStatus.UNAUTHORIZED.toString())));
+							.print(new ObjectMapper().writeValueAsString(new ExceptionDetailsDto(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), "Bad credentials", HttpStatus.UNAUTHORIZED.toString())));
 					response.setHeader("error-message", "Bad credentials");
 					response.flushBuffer();
 				} catch (IOException e1) {
@@ -173,7 +173,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			response.setStatus(HttpServletResponse.SC_ACCEPTED);
 			response.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
 			response.getOutputStream()
-					.print(new ObjectMapper().writeValueAsString(new ErrorDetailsDto(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), "Pending account. Please contact your administrator to activate it", HttpStatus.ACCEPTED.toString())));
+					.print(new ObjectMapper().writeValueAsString(new ExceptionDetailsDto(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), "Pending account. Please contact your administrator to activate it", HttpStatus.ACCEPTED.toString())));
 			response.setHeader("error-message", "Profile edition is incomplete. Please consider updating your profile.");
 			response.flushBuffer(); 
 			return false;

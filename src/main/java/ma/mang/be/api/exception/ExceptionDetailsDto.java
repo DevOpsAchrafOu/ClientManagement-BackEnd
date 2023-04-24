@@ -4,7 +4,7 @@ package ma.mang.be.api.exception;
  * @author achraf
  *
  */
-public class ErrorDetailsDto {
+public class ExceptionDetailsDto {
 
 	private String url;
 	private String message;
@@ -12,13 +12,13 @@ public class ErrorDetailsDto {
     private String details;
 
 	
-	public ErrorDetailsDto(String url, String message) {
+	public ExceptionDetailsDto(String url, String message) {
 		super();
 		this.url = url;
 		this.message = message;
 	}
 
-	public ErrorDetailsDto(String url, String message, String details) {
+	public ExceptionDetailsDto(String url, String message, String details) {
 		super();
 		this.url = url;
 		this.message = message;

@@ -24,7 +24,7 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import ma.mang.be.api.exception.ErrorDetailsDto;
+import ma.mang.be.api.exception.ExceptionDetailsDto;
 import ma.mang.be.api.service.AuthService;
 import ma.mang.be.api.utils.Utils;
 
@@ -74,7 +74,7 @@ public class PublicRest {
 		try {
 			return ResponseEntity.ok("validated :"+ authService.validateEmail(validationToken));
 		}catch(TokenExpiredException e) {
-			return new ResponseEntity<>(new ErrorDetailsDto(Utils.dateToString(new Date(), "dd/MM/yyyy hh:mm:ss"), MSG_REQUEST_EXPIRED, e.getMessage()),HttpStatus.ACCEPTED);
+			return new ResponseEntity<>(new ExceptionDetailsDto(Utils.dateToString(new Date(), "dd/MM/yyyy hh:mm:ss"), MSG_REQUEST_EXPIRED, e.getMessage()),HttpStatus.ACCEPTED);
 		}
      }
 	

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.naming.AuthenticationException;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +32,6 @@ import ma.mang.be.api.utils.Utils;
  * <b><li>NotFoundElementException</b> returns 204 code</li>
  * <b><li>MethodArgumentNotValidException</b> returns 400 code</li>
  * <b><li>AuthenticationException</b> returns 401 code</li>
- * <b><li>TokenExpiredException</b> returns 401 code</li>
  * <b><li>ForbiddenResourceException</b> returns 403 code</li>
  * <b><li>ResourceNotFoundException</b> returns 404 code</li>
  * <b><li>ConflictException</b> returns 409 code</li>
@@ -79,17 +80,12 @@ public class ExceptionHandlersRest extends ResponseEntityExceptionHandler{
     }
     
     
-//    @ExceptionHandler(AuthenticationException.class)
-//   	public ResponseEntity<?> notEqualsPasswordExceptionHandler(AuthenticationException ex, WebRequest request) {
-//   		ResponseError errorDetails = new ResponseError(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(false));
-//   		return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
-//   	}
+    @ExceptionHandler(AuthenticationException.class)
+   	public ResponseEntity<?> notEqualsPasswordExceptionHandler(AuthenticationException ex, WebRequest request) {
+    	ExceptionModel errorDetails = new ExceptionModel(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(false));
+   		return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
+   	}
     
-//    @ExceptionHandler(TokenExpiredException.class)
-//   	public ResponseEntity<?> tokenExpiredExceptionHandler(TokenExpiredException ex, WebRequest request) {
-//   		ErrorDetails errorDetails = new ErrorDetails(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(true));
-//   		return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
-//   	}
     
     @ExceptionHandler(Exception.class)
 	public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) {

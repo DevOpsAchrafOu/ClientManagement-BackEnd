@@ -28,7 +28,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ma.mang.be.api.entity.Utilisateur;
-import ma.mang.be.api.exception.ErrorDetailsDto;
+import ma.mang.be.api.exception.ExceptionDetailsDto;
 import ma.mang.be.api.service.AuthService;
 import ma.mang.be.api.service.UtilisateurService;
 import ma.mang.be.api.utils.Utils;
@@ -150,7 +150,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 			response.setStatus(HttpServletResponse.SC_ACCEPTED);
 			response.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
 			response.getOutputStream()
-					.print(new ObjectMapper().writeValueAsString(new ErrorDetailsDto(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), "Profile edition is incomplete and/or your phone number is not confirmed. Please consider updating your profile and/or confirming your phone number.", HttpStatus.ACCEPTED.toString())));
+					.print(new ObjectMapper().writeValueAsString(new ExceptionDetailsDto(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), "Profile edition is incomplete and/or your phone number is not confirmed. Please consider updating your profile and/or confirming your phone number.", HttpStatus.ACCEPTED.toString())));
 			response.setHeader("error-message", "Profile edition is incomplete. Please consider updating your profile.");
 			response.flushBuffer(); 
 			return false;
@@ -176,7 +176,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 			response.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
 			response.getOutputStream()
-					.print(new ObjectMapper().writeValueAsString(new ErrorDetailsDto(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), "Forbidden resource. Try to reconnect.", HttpStatus.FORBIDDEN.toString())));
+					.print(new ObjectMapper().writeValueAsString(new ExceptionDetailsDto(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), "Forbidden resource. Try to reconnect.", HttpStatus.FORBIDDEN.toString())));
 			response.setHeader("error-message", "Forbidden resource. Try to reconnect.");
 			response.flushBuffer(); 
 			return false;

@@ -1,7 +1,7 @@
-# smartClientManagement-BackEnd Backend REST API
+# smartClientManagement-BackEnd REST API
 ### _v.0.1_
 
-This is the master branch of smartClientManagement-BackEnd backend REST API.
+This is the master branch of smartClientManagement-BackEnd  REST API.
 This document decribes the steps to follow to build the project in a windows architecture.
 
 ## Features
@@ -14,7 +14,7 @@ This document decribes the steps to follow to build the project in a windows arc
 
 
 ## Tech
-smartClientManagement-BackEnd backend uses a number of open source projects to work properly:
+smartClientManagement-BackEnd uses a number of open source projects to work properly:
 - [Spring boot v2.7.10]
 - [Maven v3]
 - [Mysql connector v8.0.27][dev]
@@ -71,17 +71,12 @@ cd $INSTALLATION_PATH/smartClientManagement-BackEnd/target
 java -jar smartClientManagement-BackEnd-api-0.1-prod.jar
 ```
 
-If you want to use an external properties file, you can use the following command:
-```sh
-java -jar smartClientManagement-BackEnd-api-0.1-prod.jar --spring.config.location=file:_$INSTALLATION_PATH/smartClientManagement-BackEnd/config/application.properties
-```
-
 The properties file defines the values of the variables used by the app. Please refer to [Environnement Variables](#env_variables)
 
 This will generate the necessary tables needed to run the App.
 > **Note**: **`If this was not happen, please consider doing it manually`**
 
-Check if all is well by following this link : http://localhost:8080/v1/public/about . This should show **REST API for OverMap App - Version : 0.1**
+Check if all is well by following this link : http://localhost:8081/api/mng/v1/public/about . This should show **REST API for OverMap App - Version : 0.1**
 
 <a name="env_variables"></a>
 ## Environnement variables
@@ -89,7 +84,7 @@ smartClientManagement-BackEnd uses certain numbers of variables as described bel
 | Variable | Signification |
 | ------ | ------ |
 | app.version | The app version |
-| host.dns | The DNS host represating the route URL of the app (ex. http://test.smartClientManagement-BackEnd.ma/)|
+| host.dns | The DNS host represating the route URL of the app (ex. https://smartclientmanagement-backend.onrender.com/api/mng/v1/public/about)|
 | spring.datasource.url | Database connexion URL |
 | spring.datasource.username | Database user |
 | spring.datasource.password | Database password |

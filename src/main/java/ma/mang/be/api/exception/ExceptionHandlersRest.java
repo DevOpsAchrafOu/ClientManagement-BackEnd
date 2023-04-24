@@ -44,27 +44,27 @@ public class ExceptionHandlersRest extends ResponseEntityExceptionHandler{
 	
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<?> resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
-         ResponseError errorDetails = new ResponseError(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(false));
+         ExceptionModel errorDetails = new ExceptionModel(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(false));
          return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
     
     @ExceptionHandler(ForbiddenResourceException.class)
     public ResponseEntity<?> forbiddenExcpetionHandler(ForbiddenResourceException ex, WebRequest request) {
-        ResponseError errorDetails = new ResponseError(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(false));
+        ExceptionModel errorDetails = new ExceptionModel(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
         
     }
     
     @ExceptionHandler(ConflictException.class)
     public ResponseEntity<?> conflictExceptionHandler(ConflictException ex, WebRequest request) {
-        ResponseError errorDetails = new ResponseError(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(false));
+        ExceptionModel errorDetails = new ExceptionModel(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
         
     }
     
     @ExceptionHandler(NotFoundElementException.class)
     public @ResponseBody ResponseEntity<?> notFoundElementExceptionHandler(NotFoundElementException ex, WebRequest request) {
-        ResponseError errorDetails = new ResponseError(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(true));
+        ExceptionModel errorDetails = new ExceptionModel(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(true));
         return new ResponseEntity<>(errorDetails, HttpStatus.NO_CONTENT);
     }
     
@@ -74,7 +74,7 @@ public class ExceptionHandlersRest extends ResponseEntityExceptionHandler{
         for(ObjectError error : ex.getBindingResult().getAllErrors()) {
             details.add(error.getDefaultMessage());
         }
-        ResponseError error = new ResponseError(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(false));
+        ExceptionModel error = new ExceptionModel(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
     
@@ -93,7 +93,7 @@ public class ExceptionHandlersRest extends ResponseEntityExceptionHandler{
     
     @ExceptionHandler(Exception.class)
 	public ResponseEntity<?> globleExcpetionHandler(Exception ex, WebRequest request) {
-		ResponseError errorDetails = new ResponseError(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(false));
+		ExceptionModel errorDetails = new ExceptionModel(Utils.dateToString(new Date(),Utils.DD_MM_YYYY_HH_MM_SS_PATTERN_2), ex.getMessage(), request.getDescription(false));
 		return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 

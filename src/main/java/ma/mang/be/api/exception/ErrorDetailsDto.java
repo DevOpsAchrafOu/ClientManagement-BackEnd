@@ -9,7 +9,6 @@ public class ErrorDetailsDto {
 	private String url;
 	private String message;
 	private String timestampe;
-	
     private String details;
 
 	
@@ -40,6 +39,16 @@ public class ErrorDetailsDto {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	
+	
+
+	public String getTimestampe() {
+		return timestampe;
+	}
+
+	public void setTimestampe(String timestampe) {
+		this.timestampe = timestampe;
 	}
 
 	public String getDetails() {

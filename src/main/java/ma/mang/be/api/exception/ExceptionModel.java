@@ -4,13 +4,13 @@ package ma.mang.be.api.exception;
  * @author Achraf
  *
  */
-public class ResponseError {
+public class ExceptionModel {
 	
     private String date;
     private String message;
     private String details;
 
-    public ResponseError(String date, String message, String details) {
+    public ExceptionModel(String date, String message, String details) {
         super();
         this.date = date;
         this.message = message;
